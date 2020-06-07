@@ -48,3 +48,8 @@ a prop value is added to Square
 - add prop value to Square
 - add state squares to Board
 - add OnClick handler to Board
+
+## [Taking Turns](https://reactjs.org/tutorial/tutorial.html#taking-turns)
+
+- add prop xIsNext to Board
+- code taking turns logic in handleClick
