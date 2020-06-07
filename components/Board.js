@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import Square from './Square';
 
 export default Board = () => {
-  const renderSquare = i => <Square value={i} />;
+  const [squares, setSquares] = useState(Array(9).fill(null));
+
+  const renderSquare = i => <Square value={squares[i]} onClick={() => handleClick(i)} />;
+
+  const handleClick = i => {
+    const new_squares = squares.slice();
+    new_squares[i] = 'X';
+    setSquares(new_squares);
+  };
 
   const status = 'Next player: X';
 

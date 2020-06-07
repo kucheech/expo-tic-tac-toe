@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
 export default Square = props => {
-  const [value, setValue] = useState(null);
   return (
-    <TouchableOpacity style={styles.square} onPress={() => setValue('X')}>
-      <Text style={styles.text}>{value}</Text>
+    <TouchableOpacity style={styles.square} onPress={() => props.onClick()}>
+      <Text style={styles.text}>{props.value}</Text>
     </TouchableOpacity>
   );
 }

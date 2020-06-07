@@ -38,6 +38,13 @@ a prop value is added to Square
 
 ## [Making an Interactive Component](https://reactjs.org/tutorial/tutorial.html#making-an-interactive-component)
 
-a state value is added to Square
-the prop value is replaced with the state value
-set Square to display X on press
+- a state value is added to Square
+- the prop value is replaced with the state value
+- set Square to display X on press
+
+## [Lifting State Up](https://reactjs.org/tutorial/tutorial.html#lifting-state-up)
+
+- remove state from Square
+- add prop value to Square
+- add state squares to Board
+- add OnClick handler to Board
