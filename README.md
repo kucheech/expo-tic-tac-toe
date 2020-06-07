@@ -10,3 +10,7 @@ This is a walkthrough of the tutorial at https://reactjs.org/tutorial/tutorial.h
 ```
 expo init --npm --template "blank" --name "Tic Tac Toe"
 ```
+
+## Resolve npm audit warnings
+
+Reference: https://itnext.io/fixing-security-vulnerabilities-in-npm-dependencies-in-less-than-3-mins-a53af735261d
