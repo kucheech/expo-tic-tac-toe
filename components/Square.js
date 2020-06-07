@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
 export default Square = props => {
   return (
-    <TouchableOpacity style={styles.square} onPress={() => props.onClick()}>
+    <TouchableOpacity style={styles.square} onPress={props.onClick}>
       <Text style={styles.text}>{props.value}</Text>
     </TouchableOpacity>
   );
