@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
-export default Square = () => (
+export default Square = props => (
   <TouchableOpacity style={styles.square} >
-    <Text style={styles.text}>{/* TODO */}</Text>
+    <Text style={styles.text}>{props.value}</Text>
   </TouchableOpacity>
 );
 
