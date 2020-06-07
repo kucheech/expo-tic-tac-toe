@@ -53,3 +53,8 @@ a prop value is added to Square
 
 - add prop xIsNext to Board
 - code taking turns logic in handleClick
+
+## [Declaring a winner](https://reactjs.org/tutorial/tutorial.html#declaring-a-winner)
+
+- add calculateWinner function
+- code win game logic in Board
