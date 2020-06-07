@@ -58,3 +58,9 @@ a prop value is added to Square
 
 - add calculateWinner function
 - code win game logic in Board
+
+## [Lifting State Up, Again](https://reactjs.org/tutorial/tutorial.html#lifting-state-up-again)
+
+- remove state squares from Board
+- add state history in Game
+- move game logic to Game
