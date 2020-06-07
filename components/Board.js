@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import Square from './Square';
 
 export default Board = () => {
-  const renderSquare = i => <Square />;
+  const renderSquare = i => <Square value={i} />;
 
   const status = 'Next player: X';
 

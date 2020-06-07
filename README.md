@@ -29,4 +29,9 @@ expo publish
 
 ### Inspecting the starter code
 
-TouchableOpacity is used instead of Button as the Button in React Native could not be easily customised (cannot set height and width for instance)
+TouchableOpacity is used instead of Button as the Button in React Native could not be easily customised (cannot set height and
+width for instance)
+
+### Passing Data Through Props
+
+a prop value is added to Square
