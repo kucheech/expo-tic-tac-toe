@@ -27,11 +27,17 @@ expo start
 expo publish
 ```
 
-### Inspecting the starter code
+## [Inspecting the starter code](https://reactjs.org/tutorial/tutorial.html#inspecting-the-starter-code)
 
 TouchableOpacity is used instead of Button as the Button in React Native could not be easily customised (cannot set height and
 width for instance)
 
-### Passing Data Through Props
+## [Passing Data Through Props](https://reactjs.org/tutorial/tutorial.html#passing-data-through-props)
 
 a prop value is added to Square
+
+## [Making an Interactive Component](https://reactjs.org/tutorial/tutorial.html#making-an-interactive-component)
+
+a state value is added to Square
+the prop value is replaced with the state value
+set Square to display X on press
