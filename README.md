@@ -64,3 +64,10 @@ a prop value is added to Square
 - remove state squares from Board
 - add state history in Game
 - move game logic to Game
+
+## [Showing the Past Moves](https://reactjs.org/tutorial/tutorial.html#showing-the-past-moves)
+
+- refactor xIsNext to playerTurn
+- add move description
+- add move to history
+- add Flatlist moves to show list of past moves
