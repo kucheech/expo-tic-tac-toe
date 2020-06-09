@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Board from './Board';
 
 function calculateWinner(squares) {
@@ -30,23 +30,30 @@ const getMove = (player, i) => {
 }
 
 export default Game = () => {
-  const [history, setHistory] = useState([{ squares: Array(9).fill(null), move: 'Start of game' }]);
+  const [history, setHistory] = useState([{ squares: Array(9).fill(null), move: 'Start of game', stepNumber: 0 }]);
   const [playerTurn, setPlayerTurn] = useState('X');
+  const [stepNumber, setStepNumber] = useState(0);
 
   const handleClick = i => {
-    const current = history.slice(-1)[0];
+    const new_history = history.slice(0, stepNumber + 1);
+    const current = new_history.slice(-1)[0];
     const squares = current.squares.slice();
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
 
     squares[i] = playerTurn;
-    setHistory(history.concat([{ squares, move: getMove(playerTurn, i) }]));
+    setHistory(new_history.concat([{ squares, move: getMove(playerTurn, i) }]));
     setPlayerTurn(playerTurn === 'X' ? 'O' : 'X');
+    setStepNumber(new_history.length);
   };
 
+  const jumpTo = stepNumber => {
+    setStepNumber(stepNumber);
+    setPlayerTurn(stepNumber % 2 === 0 ? 'X' : 'O');
+  };
 
-  const current = history.slice(-1)[0];
+  const current = history[stepNumber];
   const winner = calculateWinner(current.squares);
   let status;
   if (winner) {
@@ -55,7 +62,7 @@ export default Game = () => {
     status = 'Next player: ' + playerTurn;
   }
   const move = current.move;
-  const moves = history.map(i => ({ key: i.move }));
+  const moves = history.map((m, i) => ({ key: m.move, stepNumber: i }));
 
   return (
     <View style={styles.game}>
@@ -65,7 +72,7 @@ export default Game = () => {
 
       <FlatList style={styles.list}
         data={moves}
-        renderItem={({ item }) => <Text style={styles.item}>{item.key}</Text>}
+        renderItem={({ item }) => <TouchableOpacity style={styles.item} onPress={() => jumpTo(item.stepNumber)}><Text>{item.key}</Text></TouchableOpacity>}
       />
     </View>
   );
@@ -83,8 +90,9 @@ const styles = StyleSheet.create({
     marginTop: 16
   },
   item: {
-    fontSize: 18,
-    textAlign: 'center'
+    fontSize: 12,
+    textAlign: 'center',
+    padding: 4
   },
   status: {
     fontSize: 18,

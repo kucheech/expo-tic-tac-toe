@@ -71,3 +71,9 @@ a prop value is added to Square
 - add move description
 - add move to history
 - add Flatlist moves to show list of past moves
+
+## [Implementing Time Travel](https://reactjs.org/tutorial/tutorial.html#implementing-time-travel)
+
+- add state stepNumber
+- change moves item type to TouchableOpacity
+- replicate jumpTo logic
