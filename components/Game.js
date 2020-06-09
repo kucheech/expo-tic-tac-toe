@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import Board from './Board';
 
 function calculateWinner(squares) {
@@ -23,9 +23,15 @@ function calculateWinner(squares) {
   return null;
 }
 
+const getMove = (player, i) => {
+  const x = Math.floor(i / 3) + 1;
+  const y = i % 3 + 1;
+  return `${player} at [${x}][${y}]`;
+}
+
 export default Game = () => {
-  const [history, setHistory] = useState([{ squares: Array(9).fill(null) }]);
-  const [xIsNext, setXIsNext] = useState(true);
+  const [history, setHistory] = useState([{ squares: Array(9).fill(null), move: 'Start of game' }]);
+  const [playerTurn, setPlayerTurn] = useState('X');
 
   const handleClick = i => {
     const current = history.slice(-1)[0];
@@ -34,9 +40,9 @@ export default Game = () => {
       return;
     }
 
-    squares[i] = xIsNext ? 'X' : 'O';
-    setHistory(history.concat([{ squares }]));
-    setXIsNext(!xIsNext);
+    squares[i] = playerTurn;
+    setHistory(history.concat([{ squares, move: getMove(playerTurn, i) }]));
+    setPlayerTurn(playerTurn === 'X' ? 'O' : 'X');
   };
 
 
@@ -46,23 +52,42 @@ export default Game = () => {
   if (winner) {
     status = 'Winner: ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Next player: ' + playerTurn;
   }
+  const move = current.move;
+  const moves = history.map(i => ({ key: i.move }));
 
   return (
     <View style={styles.game}>
       <Text style={styles.status}>{status}</Text>
 
-      <Board squares={current.squares} onClick={i => handleClick(i)} />
+      <Board style={styles.board} squares={current.squares} onClick={i => handleClick(i)} />
+
+      <FlatList style={styles.list}
+        data={moves}
+        renderItem={({ item }) => <Text style={styles.item}>{item.key}</Text>}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   game: {
+    flex: 1,
+    flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 120
+  },
+  list: {
+    marginTop: 16
+  },
+  item: {
+    fontSize: 18,
+    textAlign: 'center'
   },
   status: {
-    fontSize: 18
+    fontSize: 18,
+    marginBottom: 16
   }
 });
